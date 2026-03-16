@@ -1,0 +1,16 @@
+{
+  "mappings": {
+    "me/batuhan/cilveligorunmez/mixin/EntityMixin": {
+      "isGlowing": "Lnet/minecraft/class_1297;method_5851()Z",
+      "isInvisibleTo": "Lnet/minecraft/class_1297;method_5756(Lnet/minecraft/class_1657;)Z"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "me/batuhan/cilveligorunmez/mixin/EntityMixin": {
+        "isGlowing": "Lnet/minecraft/class_1297;method_5851()Z",
+        "isInvisibleTo": "Lnet/minecraft/class_1297;method_5756(Lnet/minecraft/class_1657;)Z"
+      }
+    }
+  }
+}

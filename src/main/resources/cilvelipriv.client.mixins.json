@@ -2,7 +2,7 @@
   "required": true,
   "package": "me.batuhan.cilveligorunmez.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "cilvelipriv-refmap.json",
+  "refmap": "client-cilvelipriv-refmap.json",
   "mixins": [
   ],
   "client": [

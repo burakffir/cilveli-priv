@@ -25,9 +25,7 @@ loom {
 		}
 	}
 
-    mixin {
-        defaultRefmapName.set("cilvelipriv-refmap.json")
-    }
+    // Mixin refmap generator relies on Loom's default behavior.
 }
 
 dependencies {
