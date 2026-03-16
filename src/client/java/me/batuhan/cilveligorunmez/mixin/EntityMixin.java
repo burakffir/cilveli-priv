@@ -12,8 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
 
-    // Yarn mapteki target name'i dogru sekilde vermek en garantilisidir. 
-    @Inject(method = "isInvisibleTo(Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isInvisibleTo", at = @At("HEAD"), cancellable = true)
     private void overrideInvisibility(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.isEnabled) return;
         
@@ -32,7 +31,7 @@ public abstract class EntityMixin {
     }
 
     // Parlayan (Glowing) efekti cizmek icin
-    @Inject(method = "isGlowing()Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isGlowing", at = @At("HEAD"), cancellable = true)
     private void injectGlowing(CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.isEnabled) return;
         
