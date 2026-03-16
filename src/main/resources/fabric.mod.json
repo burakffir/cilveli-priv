@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "cilvelipriv",
+	"version": "${version}",
+	"name": "Cilveli Priv",
+	"description": "Cilveli priv mod",
+	"authors": [
+		"burakfitnes"
+	],
+	"contact": {
+		"homepage": "https://github.com/",
+		"sources": "https://github.com/"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/cilvelipriv/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"me.batuhan.cilveligorunmez.CilveliGorunmez"
+		],
+		"modmenu": [
+			"me.batuhan.cilveligorunmez.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		{
+			"config": "cilvelipriv.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}
