@@ -16,16 +16,6 @@ repositories {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
-	mods {
-		"cilvelipriv" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
-
-    // Mixin refmap generator relies on Loom's default behavior.
 }
 
 dependencies {
