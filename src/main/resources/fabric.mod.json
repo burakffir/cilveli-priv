@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "cilvelipriv",
-	"version": "${version}",
+	"id": "cilveli-priv",
+	"version": "1.0.0",
 	"name": "Cilveli Priv",
-	"description": "Oyunda görünmez olan veya pusan oyuncuları rahatça görmeniz için yapılmış basit bir mod.\nMod menüsünden veya F4 ile açıp kapatabiliyorsun. Yarı saydam veya parlayan şekilde görünmelerini ayarlar kısmından seçebilirsin.",
+	"description": "Görünmez adamları yakalama ve gizlilik modu. F4 ile menüyü aç/kapat.",
 	"authors": [
 		"burakfitnes"
 	],
