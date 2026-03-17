@@ -15,9 +15,10 @@ public abstract class PlayerEntityRendererMixin {
 
     @Inject(method = "render*", at = @At("HEAD"))
     private void renderGhostMode(AbstractClientPlayerEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int renderLight, CallbackInfo ci) {
-        // Bu mixin aslında sadece bir örnek.
-        // EntityRenderer icinde isTranslucent vesaire metotları vardir.
-        // Fabric API ve vanilla kodunda isInvisibleTo zaten yarÄ± saydam yapmayi handle edebilir eger
-        // seyirci modundaymis gibi davranirsak ama renderPlayer'da ekstra kontrol koyabiliriz isterseniz.
+        if (!ModConfig.INSTANCE.isEnabled) return;
+        
+        // Eger Minecraft'in varsayilan yarı saydam islemesini guclendirmek istersen buraya alfa değerleriyle MatrixStack / RenderSystem uzerinde manipülasyon yapilabilir.
+        // Fabric API ve vanilla kodunda isInvisibleTo(false) yapmak zaten seyirci modundaymis gibi (0.15f alpha) yari saydamlik sagladigindan dolayı genellikle buraya dokunmadan çalışıyor.
+        // Ama görsel estetiği arttırmak istersen OpenGL bacakları buradan yönetilebilir.
     }
 }

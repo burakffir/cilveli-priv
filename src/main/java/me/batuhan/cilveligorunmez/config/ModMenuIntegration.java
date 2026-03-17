@@ -27,6 +27,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ModConfig.INSTANCE.stealthMode = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startEnumSelector(Text.literal("Görsel İşleme (Render) Modu"), ModConfig.VisualMode.class, ModConfig.INSTANCE.visualMode)
+                    .setDefaultValue(ModConfig.VisualMode.BOTH)
+                    .setTooltip(Text.literal("Görünmez oyuncuların nasıl işleneceğini seçer.\nTRANSLUCENT: Yarı Saydam\nGLOWING: Parlayan Hatlar\nBOTH: İkisi Birden"))
+                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.visualMode = newValue)
+                    .build());
+
             // 2. Sekme Onemli
             ConfigCategory onemli = builder.getOrCreateCategory(Text.literal("Önemli!"));
             onemli.addEntry(entryBuilder.startBooleanToggle(Text.literal("Ana Şalter (Aktif/Pasif)"), ModConfig.INSTANCE.isEnabled)
