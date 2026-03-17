@@ -16,16 +16,12 @@ public class ModConfig {
 
     public boolean isEnabled = false;
     public boolean stealthMode = false;
-    public VisualMode visualMode = VisualMode.TRANSLUCENT;
+    public VisualMode visualMode = VisualMode.BOTH;
 
     public enum VisualMode {
-        TRANSLUCENT("Yarı Saydam (Ghost)"), 
-        GLOWING("Parlayan (Glow)"), 
-        BOTH("Her İkisi Birden");
-
-        private final String label;
-        VisualMode(String label) { this.label = label; }
-        public String getLabel() { return label; }
+        TRANSLUCENT,
+        GLOWING,
+        BOTH
     }
 
     public static ModConfig INSTANCE = new ModConfig();

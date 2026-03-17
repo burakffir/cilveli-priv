@@ -17,27 +17,22 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setTitle(Text.literal("Cilveli Priv Ayarları"));
 
             builder.setSavingRunnable(ModConfig::save);
-
-            ConfigCategory general = builder.getOrCreateCategory(Text.literal("Genel Seçenekler"));
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Özellik Aktif"), ModConfig.INSTANCE.isEnabled)
+            // Sadece stealth modunu buraya biraktim vs
+            ConfigCategory general = builder.getOrCreateCategory(Text.literal("Genel Seçenekler"));
+            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Sessiz Mod (Gizlilik)"), ModConfig.INSTANCE.stealthMode)
                     .setDefaultValue(false)
-                    .setTooltip(Text.literal("Modu tamamen açıp/kapatır."))
-                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.isEnabled = newValue)
-                    .build());
-                    
-            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Sessiz Mod (Gizli)"), ModConfig.INSTANCE.stealthMode)
-                    .setDefaultValue(false)
-                    .setTooltip(Text.literal("Aktif edildiğinde F4'e basınca ekrana 'CILVELI' yazısı gelmez. Yayında vs. belli etmemek için."))
+                    .setTooltip(Text.literal("F4'e basınca sohbete/action bar'a renkli bildirim düşmez. Yayın ekranında mod gizlenir."))
                     .setSaveConsumer(newValue -> ModConfig.INSTANCE.stealthMode = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startEnumSelector(Text.literal("Gösterim Tarzı"), ModConfig.VisualMode.class, ModConfig.INSTANCE.visualMode)
-                    .setEnumNameProvider(enumValue -> Text.literal(((ModConfig.VisualMode) enumValue).getLabel()))
-                    .setDefaultValue(ModConfig.VisualMode.TRANSLUCENT)
-                    .setTooltip(Text.literal("Gösterim biçimini belirler."))
-                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.visualMode = newValue)
+            // 2. Sekme Onemli
+            ConfigCategory onemli = builder.getOrCreateCategory(Text.literal("Önemli!"));
+            onemli.addEntry(entryBuilder.startBooleanToggle(Text.literal("Ana Şalter (Aktif/Pasif)"), ModConfig.INSTANCE.isEnabled)
+                    .setDefaultValue(false)
+                    .setTooltip(Text.literal("Modu tamamen açıp/kapatır."))
+                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.isEnabled = newValue)
                     .build());
 
             return builder.build();

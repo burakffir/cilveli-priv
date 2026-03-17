@@ -2,11 +2,9 @@
   "required": true,
   "package": "me.batuhan.cilveligorunmez.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "cilveli-priv-refmap.json",
-  "mixins": [
-  ],
   "client": [
-    "EntityMixin"
+    "EntityMixin",
+    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
