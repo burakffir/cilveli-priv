@@ -3,17 +3,17 @@
 	"id": "cilvelipriv",
 	"version": "${version}",
 	"name": "Cilveli Priv",
-	"description": "Görünmez oyuncuları açığa çıkaran gelişmiş Minecraft yardımcı istemcisi.\n\nÖzellikler:\n✨ Görünmez oyuncuları tespit edip yarı saydam/parlayarak çizer\n✨ Tam entegre ayarlar menüsü\n✨ Yayıncılar/Youtuberlar için 'Sessiz Mod' gizliliği\n\nF4 tuşuyla mod içinden anında kapatılıp açılabilir.",
+	"description": "Oyunda görünmez olan veya pusan oyuncuları rahatça görmeniz için yapılmış basit bir mod.\nMod menüsünden veya F4 ile açıp kapatabiliyorsun. Yarı saydam veya parlayan şekilde görünmelerini ayarlar kısmından seçebilirsin.",
 	"authors": [
 		"burakfitnes"
 	],
 	"contact": {
 		"homepage": "https://github.com/burakffir/cilveli-priv",
-		"sources": "https://github.com/burakffir/cilveli-priv/tree/master/src",
+		"sources": "https://github.com/burakffir/cilveli-priv",
 		"issues": "https://github.com/burakffir/cilveli-priv/issues"
 	},
 	"license": "MIT",
-	"icon": "assets/cilvelipriv/icon.png",
+	"icon": "icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [

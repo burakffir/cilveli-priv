@@ -31,10 +31,10 @@ public class ModConfig {
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 INSTANCE = GSON.fromJson(reader, ModConfig.class);
             } catch (IOException e) {
-                System.err.println("Ayarlar okunamadı!");
+                System.err.println("Cilveli Priv ayarları çöktü veya okunamadı.");
             }
         } else {
-            save();
+            save(); // ilk girişte oluştururuz
         }
     }
 
@@ -42,7 +42,7 @@ public class ModConfig {
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(INSTANCE, writer);
         } catch (IOException e) {
-            System.err.println("Ayarlar kaydedilemedi!");
+            System.err.println("Uyarı: Cilveli Priv dosyasını kaydedemedik!");
         }
     }
 }

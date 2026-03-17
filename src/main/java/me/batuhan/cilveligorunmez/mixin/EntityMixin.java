@@ -16,29 +16,25 @@ public abstract class EntityMixin {
     private void overrideInvisibility(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.isEnabled) return;
         
-        Entity targetEntity = (Entity) (Object) this;
+        Entity target = (Entity) (Object) this;
 
-        // Eger kendi karakterimiz degilse ve baska bir oyuncuysa
-        if (targetEntity instanceof PlayerEntity && targetEntity != MinecraftClient.getInstance().player) {
-            
-            // Eğer configte hayalet (TRANSLUCENT) modu açiksa:
+        // biz hariç diger oyunculara yari saydamlik (spectator gibi) uygula
+        if (target instanceof PlayerEntity && target != MinecraftClient.getInstance().player) {
             if (ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.TRANSLUCENT || 
                 ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.BOTH) {
-                // Return 'false' demek Minecraft'a "bu adam sana gorunmez degil" diyor. Bu sayede Minecraft onu YARI SAYDAM olarak (spectator gibi) ciziyor!
                 cir.setReturnValue(false); 
             }
         }
     }
 
-    // Parlayan (Glowing) efekti cizmek icin
     @Inject(method = "isGlowing", at = @At("HEAD"), cancellable = true)
-    private void injectGlowing(CallbackInfoReturnable<Boolean> cir) {
+    private void setBypassGlow(CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.isEnabled) return;
         
-        Entity targetEntity = (Entity) (Object) this;
+        Entity target = (Entity) (Object) this;
         
-        // Bu kiºinin gercekte gorunmezlik statü etkisi var mi kontrolü
-        if (targetEntity instanceof PlayerEntity && targetEntity != MinecraftClient.getInstance().player && targetEntity.isInvisible()) {
+        // gercekten gorunmezse adami isiklandir/parlat
+        if (target instanceof PlayerEntity && target != MinecraftClient.getInstance().player && target.isInvisible()) {
             if (ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.GLOWING || 
                 ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.BOTH) {
                 cir.setReturnValue(true);

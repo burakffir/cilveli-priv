@@ -19,10 +19,10 @@ public class CilveliGorunmez implements ClientModInitializer {
         ModConfig.load();
 
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.cilvelipriv.toggle", 
+                "Cilveli Priv Aç/Kapat", 
                 InputUtil.Type.KEYSYM, 
                 GLFW.GLFW_KEY_F4, 
-                "category.cilvelipriv" 
+                "Cilveli Modlar" 
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

@@ -19,26 +19,24 @@ public class ModMenuIntegration implements ModMenuApi {
             builder.setSavingRunnable(ModConfig::save);
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-            // Sadece stealth modunu buraya biraktim vs
-            ConfigCategory general = builder.getOrCreateCategory(Text.literal("Genel Seçenekler"));
-            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Sessiz Mod (Gizlilik)"), ModConfig.INSTANCE.stealthMode)
+            ConfigCategory general = builder.getOrCreateCategory(Text.literal("Menü"));
+            
+            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Ana Şalter"), ModConfig.INSTANCE.isEnabled)
                     .setDefaultValue(false)
-                    .setTooltip(Text.literal("F4'e basınca sohbete/action bar'a renkli bildirim düşmez. Yayın ekranında mod gizlenir."))
+                    .setTooltip(Text.literal("Cilveli Priv'i kökten aşıp kapatmanı sağlar."))
+                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.isEnabled = newValue)
+                    .build());
+                    
+            general.addEntry(entryBuilder.startBooleanToggle(Text.literal("Sessiz Mod (Chat/Actionbar)"), ModConfig.INSTANCE.stealthMode)
+                    .setDefaultValue(false)
+                    .setTooltip(Text.literal("F4'e basıp modu açıp kapatırken oyunda bildirim çıksın mı? (yayıncılar açabilir)"))
                     .setSaveConsumer(newValue -> ModConfig.INSTANCE.stealthMode = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startEnumSelector(Text.literal("Görsel İşleme (Render) Modu"), ModConfig.VisualMode.class, ModConfig.INSTANCE.visualMode)
+            general.addEntry(entryBuilder.startEnumSelector(Text.literal("Adamlar Nasıl Gözüksün"), ModConfig.VisualMode.class, ModConfig.INSTANCE.visualMode)
                     .setDefaultValue(ModConfig.VisualMode.BOTH)
-                    .setTooltip(Text.literal("Görünmez oyuncuların nasıl işleneceğini seçer.\nTRANSLUCENT: Yarı Saydam\nGLOWING: Parlayan Hatlar\nBOTH: İkisi Birden"))
+                    .setTooltip(Text.literal("Görünmez elemanların çizilme biçimi:\nTRANSLUCENT: Yarı Saydam\nGLOWING: Dış Hat Parlaması\nBOTH: İkisi Birden"))
                     .setSaveConsumer(newValue -> ModConfig.INSTANCE.visualMode = newValue)
-                    .build());
-
-            // 2. Sekme Onemli
-            ConfigCategory onemli = builder.getOrCreateCategory(Text.literal("Önemli!"));
-            onemli.addEntry(entryBuilder.startBooleanToggle(Text.literal("Ana Şalter (Aktif/Pasif)"), ModConfig.INSTANCE.isEnabled)
-                    .setDefaultValue(false)
-                    .setTooltip(Text.literal("Modu tamamen açıp/kapatır."))
-                    .setSaveConsumer(newValue -> ModConfig.INSTANCE.isEnabled = newValue)
                     .build());
 
             return builder.build();
