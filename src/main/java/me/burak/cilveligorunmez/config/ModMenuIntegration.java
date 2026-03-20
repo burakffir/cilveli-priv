@@ -1,4 +1,4 @@
-package me.batuhan.cilveligorunmez.config;
+package me.burak.cilveligorunmez.config;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

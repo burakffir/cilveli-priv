@@ -1,4 +1,4 @@
-package me.batuhan.cilveligorunmez.config;
+package me.burak.cilveligorunmez.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

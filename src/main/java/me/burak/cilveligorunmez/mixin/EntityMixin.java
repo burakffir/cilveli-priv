@@ -1,6 +1,6 @@
-package me.batuhan.cilveligorunmez.mixin;
+package me.burak.cilveligorunmez.mixin;
 
-import me.batuhan.cilveligorunmez.config.ModConfig;
+import me.burak.cilveligorunmez.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
 
+    private boolean isLocalPlayer(Entity entity) {
+        return MinecraftClient.getInstance().player != null && 
+               entity.getUuid().equals(MinecraftClient.getInstance().player.getUuid());
+    }
+
     @Inject(method = "isInvisibleTo", at = @At("HEAD"), cancellable = true)
     private void overrideInvisibility(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.isEnabled) return;
@@ -19,7 +24,7 @@ public abstract class EntityMixin {
         Entity target = (Entity) (Object) this;
 
         // biz hariç diger oyunculara yari saydamlik (spectator gibi) uygula
-        if (target instanceof PlayerEntity && target != MinecraftClient.getInstance().player) {
+        if (target instanceof PlayerEntity && !isLocalPlayer(target)) {
             if (ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.TRANSLUCENT || 
                 ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.BOTH) {
                 cir.setReturnValue(false); 
@@ -34,7 +39,7 @@ public abstract class EntityMixin {
         Entity target = (Entity) (Object) this;
         
         // gercekten gorunmezse adami isiklandir/parlat
-        if (target instanceof PlayerEntity && target != MinecraftClient.getInstance().player && target.isInvisible()) {
+        if (target instanceof PlayerEntity && !isLocalPlayer(target) && target.isInvisible()) {
             if (ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.GLOWING || 
                 ModConfig.INSTANCE.visualMode == ModConfig.VisualMode.BOTH) {
                 cir.setReturnValue(true);
